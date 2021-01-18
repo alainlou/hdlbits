@@ -1,12 +1,13 @@
 module top_module (
-    input clk,
-    input reset,
-    input [7:0] d,
-    output [7:0] q
-);
+    input clk,    // Clocks are used in sequential circuits
+    input d,
+    output reg q );//
 
-    always @(negedge clk) begin
-        q <= reset ? 8'h34 : d;
+    // Use a clocked always block
+    //   copy d to q at every positive edge of clk
+    //   Clocked always blocks should use non-blocking assignments
+    always @(posedge clk) begin
+        q <= d;
     end
 
 endmodule

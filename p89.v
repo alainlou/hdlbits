@@ -1,14 +1,11 @@
 module top_module (
     input clk,
-    input w, R, E, L,
-    output Q
-);
-    wire sel1, sel2;
-    assign sel1 = E ? w : Q;
-    assign sel2 = L ? R : sel1;
+    input d,
+    input r,   // synchronous reset
+    output q);
 
     always @(posedge clk) begin
-        Q <= sel2;
+        q <= r ? 1'b0 : d;
     end
 
 endmodule

@@ -1,14 +1,16 @@
 module top_module (
     input clk,
-    input reset,
-    input [31:0] in,
-    output [31:0] out
-);
-    reg [31:0] prev = 32'h0000;
+    input j,
+    input k,
+    output Q);
 
     always @(posedge clk) begin
-        out <= reset ? 32'h0000 : out|prev&(~in);
-        prev <= in;
+        case ({j, k})
+            2'b01: Q <= 1'b0;
+            2'b10: Q <= 1'b1;
+            2'b11: Q <= ~Q;
+            default: Q <= Q;
+        endcase
     end
 
 endmodule

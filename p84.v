@@ -1,11 +1,12 @@
 module top_module (
-    input d,
-    input ena,
-    output q);
+    input clk,
+    input reset,
+    input [7:0] d,
+    output [7:0] q
+);
 
-    always @(*) begin
-        if (ena)
-            q = d;
+    always @(negedge clk) begin
+        q <= reset ? 8'h34 : d;
     end
 
 endmodule

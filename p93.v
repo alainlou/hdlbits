@@ -1,13 +1,22 @@
 module top_module (
     input clk,
-    input [7:0] in,
-    output [7:0] anyedge
+    input x,
+    output z
 );
-    reg [7:0] prev;
+
+    wire d1, d2, d3;
+    wire q1, q2, q3;
+
+    assign d1 = q1^x;
+    assign d2 = x&!q2;
+    assign d3 = x|!q3;
 
     always @(posedge clk) begin
-        prev <= in;
-        anyedge <= in^prev;
+        q1 <= d1;
+    	q2 <= d2;
+        q3 <= d3;
     end
+
+    assign z = !(q1|q2|q3);
 
 endmodule

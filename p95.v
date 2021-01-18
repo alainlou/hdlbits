@@ -1,18 +1,12 @@
 module top_module (
     input clk,
-    input d,
-    output q
+    input [7:0] in,
+    output [7:0] pedge
 );
-    reg q1, q2;
-
+    reg [7:0] prev = 8'b00000000;
     always @(posedge clk) begin
-        q1 <= d;
+        pedge <= in&~prev;
+        prev <= in;
     end
-
-    always @(negedge clk) begin
-    	q2 <= d;
-    end
-
-    assign q = clk ? q1 : q2;
 
 endmodule

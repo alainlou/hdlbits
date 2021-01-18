@@ -1,16 +1,15 @@
 module top_module (
-    input clk,
-    input j,
-    input k,
-    output Q);
+	input clk,
+	input L,
+	input r_in,
+	input q_in,
+	output reg Q);
+
+    wire d;
+    assign d = L ? r_in : q_in;
 
     always @(posedge clk) begin
-        case ({j, k})
-            2'b01: Q <= 1'b0;
-            2'b10: Q <= 1'b1;
-            2'b11: Q <= ~Q;
-            default: Q <= Q;
-        endcase
+        Q <= d;
     end
 
 endmodule

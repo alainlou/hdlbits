@@ -1,12 +1,14 @@
 module top_module (
     input clk,
-    input [7:0] in,
-    output [7:0] pedge
+    input w, R, E, L,
+    output Q
 );
-    reg [7:0] prev = 8'b00000000;
+    wire sel1, sel2;
+    assign sel1 = E ? w : Q;
+    assign sel2 = L ? R : sel1;
+
     always @(posedge clk) begin
-        pedge <= in&~prev;
-        prev <= in;
+        Q <= sel2;
     end
 
 endmodule

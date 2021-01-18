@@ -1,11 +1,15 @@
 module top_module (
     input clk,
-    input d,
-    input r,   // synchronous reset
-    output q);
-
+    input resetn,
+    input [1:0] byteena,
+    input [15:0] d,
+    output [15:0] q
+);
     always @(posedge clk) begin
-        q <= r ? 1'b0 : d;
+        if (byteena[0])
+            q[7:0] = d[7:0] & {8{resetn}};
+        if (byteena[1])
+            q[15:8] = d[15:8] & {8{resetn}};
     end
 
 endmodule

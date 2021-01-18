@@ -1,15 +1,11 @@
 module top_module (
-	input clk,
-	input L,
-	input r_in,
-	input q_in,
-	output reg Q);
+    input clk,
+    input d,
+    input ar,   // asynchronous reset
+    output q);
 
-    wire d;
-    assign d = L ? r_in : q_in;
-
-    always @(posedge clk) begin
-        Q <= d;
+    always @(posedge clk, posedge ar) begin
+        q <= ar ? 1'b0 : d;
     end
 
 endmodule

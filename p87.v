@@ -1,13 +1,11 @@
 module top_module (
-    input clk,
-    input in,
-    output out);
+    input d,
+    input ena,
+    output q);
 
-    wire d;
-    assign d = in^out;
-
-    always @(posedge clk) begin
-        out <= d;
+    always @(*) begin
+        if (ena)
+            q = d;
     end
 
 endmodule

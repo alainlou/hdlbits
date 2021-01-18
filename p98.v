@@ -1,12 +1,18 @@
 module top_module (
     input clk,
-    input reset,
-    output [3:0] q);
-
-    initial q = 4'b0001;
+    input d,
+    output q
+);
+    reg q1, q2;
 
     always @(posedge clk) begin
-        q <= (q == 4'd10 || reset) ? 1 : q + 1;
+        q1 <= d;
     end
+
+    always @(negedge clk) begin
+    	q2 <= d;
+    end
+
+    assign q = clk ? q1 : q2;
 
 endmodule

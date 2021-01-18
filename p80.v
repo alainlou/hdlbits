@@ -1,12 +1,9 @@
 module top_module (
-    input clk,
-    input reset,            // Synchronous reset
-    input [7:0] d,
-    output [7:0] q
+    input c,
+    input d,
+    output [3:0] mux_in
 );
 
-    always @(posedge clk) begin
-        q <= reset ? 1'b00000000 : d;
-    end
+    assign mux_in = {c&d, !d, 1'b0, c|d};
 
 endmodule

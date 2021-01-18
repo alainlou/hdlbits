@@ -1,11 +1,12 @@
 module top_module (
     input clk,
-    input d,
-    input ar,   // asynchronous reset
-    output q);
+    input areset,   // active high asynchronous reset
+    input [7:0] d,
+    output [7:0] q
+);
 
-    always @(posedge clk, posedge ar) begin
-        q <= ar ? 1'b0 : d;
+    always @(posedge clk, posedge areset) begin
+        q <= areset ? 8'b0000000 : d;
     end
 
 endmodule
