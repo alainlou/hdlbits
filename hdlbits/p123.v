@@ -2,7 +2,7 @@ module top_module(
     input in,
     input [1:0] state,
     output [1:0] next_state,
-    output out); //
+    output out);
 
     parameter A=2'd0, B=2'd1, C=2'd2, D=2'd3;
 
